@@ -1,0 +1,6 @@
+# Project exclude paths
+/.gradle/
+/nhtml/nhtml-rt/build/
+/nhtml/nhtml-rt/build/classes/java/main/
+/nhtml/nhtml-ux/build/
+/nhtml/nhtml-ux/build/classes/java/main/

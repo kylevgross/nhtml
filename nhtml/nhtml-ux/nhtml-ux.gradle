@@ -1,0 +1,42 @@
+/* Module Build File */
+
+description     = "HTML Tools"
+ext {
+}
+niagaraModule {
+  moduleName = "nhtml"
+  preferredSymbol = "kvg"
+  runtimeProfile = "ux"
+
+
+}
+
+
+dependencies {
+  compile "Tridium:nre:4.9"
+  compile "Tridium:baja:4.9"
+  compile "Tridium:alarm-rt:4.9"
+  compile "Tridium:hierarchy-rt:4.9"
+  compile "Tridium:history-rt:4.9"
+  compile "Tridium:schedule-rt:4.9"
+  compile "Tridium:bql-rt:4.9"
+  compile "Tridium:gx-rt:4.9"
+  compile "Tridium:neql-rt:4.9"
+  compile "Tridium:control-rt:4.9"
+  compile 'Tridium:web-rt:4.9'
+  compile project(":nhtml-rt")
+}
+
+jar {
+  from('src') {
+    include 'icons/**/*.png'
+    include 'rc/**/*.js'
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+<!-- Begin auto generated HTML -->
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <title id="title">Niagara</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Link to stylesheet-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/nav.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/logo.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all">
+    <script src="module://js|module://js/rc/jquery/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+
+
+
+    <script type='text/javascript'>var require = typeof require === 'undefined' ? {} : require;</script>
+    <script>
+  var require = {};
+  require.urlArgs=require.urlArgs ||  'version=1449701027522';
+  require.waitSeconds=0;
+  require.config=require.config || {};
+  require.config.ord=require.config.ord || {};
+  require.config.ord.useLocalWbRc=false;
+  require.config.baja=require.config.baja || {};
+  require.config.baja.webdev=false;
+  require.config.lex=require.config.lex || {};
+  require.config.lex.webdev=false;
+  require.hbs=require.hbs || {};
+  require.hbs.disableI18n=require.hbs.disableI18n===undefined?true:require.hbs.disableI18n;
+  require.config['nmodule/js/rc/lex/lex']={storageId:'1449701027522',lang:'en-US'};
+  require.paths=require.paths || {};
+  require.paths.nmodule=require.paths.nmodule || '/module';
+  require.paths.Promise=require.paths.Promise || '/module/js/rc/bluebird/bluebird.min';
+  require.paths.bajaScript=require.paths.bajaScript || '/module/bajaScript/rc';
+  require.paths.bajaux=require.paths.bajaux || '/module/bajaux/rc';
+  require.paths.jquery=require.paths.jquery || '/module/js/rc/jquery/jquery-3.4.1.min';
+  require.paths.dialogs=require.paths.dialogs || '/module/js/rc/dialogs/dialogs.built.min';
+  require.paths.ord=require.paths.ord || '/module/js/com/tridium/js/require/ord';
+  require.paths.lex=require.paths.lex || '/module/js/rc/lex/lexplugin';
+  require.paths.css=require.paths.css || '/module/js/com/tridium/js/ext/require/css';
+  require.paths.baja=require.paths.baja || '/module/bajaScript/rc/plugin/baja';
+  require.paths.obix=require.paths.obix || '/module/obixjs/rc/obix.built.min';
+  require.paths.Handlebars=require.paths.Handlebars || '/module/js/rc/handlebars/handlebars.min-v2.0.0';
+  require.paths.underscore=require.paths.underscore || '/module/js/rc/underscore/underscore.min';
+  require.paths.hbs=require.paths.hbs || '/module/js/rc/require-handlebars-plugin/hbs.built.min';
+  require.paths.moment=require.paths.moment || '/module/js/rc/moment/moment.min';
+  require.paths.d3=require.paths.d3 || '/module/js/rc/d3/d3.min';
+  require.paths.hx=require.paths.hx || '/module/hx/javax/baja/hx/hx';
+  require.paths.jqueryContextMenu=require.paths.jqueryContextMenu || '/module/js/rc/jquery/contextMenu/jquery.contextMenu';
+  require.paths.ace=require.paths.ace || '/module/js/rc/ace';
+  require.shim=require.shim || {};
+  require.shim.d3=require.shim.d3 || {};
+  require.shim.d3.exports=require.shim.d3.exports || 'd3';
+  require.shim.jqueryContextMenu=require.shim.jqueryContextMenu || {deps:['jquery'],exports:'jQuery'};
+  require.shim.base=require.shim.base || {deps:['baja!']};
+ </script> <script type='text/javascript'  src='module://js/com/tridium/js/ext/require/require.min.js'></script>
+
+</head>
+<body>
+
+<div id="header">
+    <div id="header-image" ><a target="hx" href='homePagePath'><img id="logo" alt="logo" src="logoPath"></a></div>
+
+    <div id="header-info">
+        <div id="header-info-username">&nbsp;
+            <div title="Click here to log out" class="header-info-username ellipsis">Getting username..
+            </div>
+        </div>
+        <div  class="header-info-logout">
+            <a title="Click here to log out" href="/logout" target="_self">Log Out</a>
+        </div>
+        <div title="Click here to log out" id="header-info-arrow-down">▼
+        </div>
+        <div id="header-info-arrow-up">▲
+        </div>
+        <!-- Oa Temp-->
+        <div id="temp">OA-T loading..</div>
+        <!-- Oa Humid-->
+        <div id="humid">OA-H loading..</div>
+    </div>
+</div>
+
+<!-- Begin responsive nav bar-->
+<div id='cssmenu'>
+    <ul>
+
+        <li class><a target="hx" href='homePagePath'><span>Home</span></a>
+        </li>
+
+        entSecMenu
+        <li id="equipMenu" class><a href='#'><span></span></a>
+        </li>
+        <li id="floorplanMenu" class><a href='#'><span></span></a>
+        </li>
+        <li id="customMenu" class><a href='#'><span></span></a>
+        </li>
+        <li id="ExternalLink" class><a href='#'><span></span></a>
+        </li>
+        historiesMenu
+        schedulesMenu
+        reportMenu
+        docMenu
+        notificationMenu
+        alarmMenu
+
+    </ul>
+</div>
+
+<div class="iframe-container">
+    <iframe name="hx" id="appletcontainer" src="homePagePath"></iframe>
+</div>
+
+
+<script type="text/javascript" src="js/bajascript.js">
+</script>
+<script type="text/javascript">
+  
+   $(document).ready(function(){
+   $.get("equip.html", function(data){
+    $("#equipMenu").replaceWith(data);
+});
+     $.get("customNav.html", function(data){
+    $("#customMenu").replaceWith(data);
+});
+
+$.get("floorplans.html", function(data){
+    $("#floorplanMenu").replaceWith(data);
+});
+
+     
+     $.get("external.html", function(data){
+    $("#ExternalLink").replaceWith(data);
+});
+   });
+</script>
+
+</body>
+</html>

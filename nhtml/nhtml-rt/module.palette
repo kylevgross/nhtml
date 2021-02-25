@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="4.0" reversibleEncodingKeySource="none" FIPSEnabled="false" reversibleEncodingValidator="[null.1]=" >
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+
+<p n="HTML5Service" m="kvg=nhtml" t="kvg:HTML5" />
+
+<p n="EquipmentNavItem" m="kvg=nhtml" t="kvg:EquipmentNavItem" />
+
+<p n="CustomNavItem" m="kvg=nhtml" t="kvg:CustomNavItem" />
+
+<p n="FloorplanNavItem" m="kvg=nhtml" t="kvg:FloorplanNavItem" />
+</p>
+
+
+</bajaObjectGraph>

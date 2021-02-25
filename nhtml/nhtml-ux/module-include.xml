@@ -1,0 +1,13 @@
+<!-- Module Include File -->
+<!-- Types -->
+<types>
+  <!-- Type Example:<type name="MyClass" class="com.acme.BMyClass"/> -->
+  <!--com.kvg.nhtml-->
+
+
+  <type class="com.kvg.nhtml.ux.BNhtml" name="Nhtml">
+    <agent>
+      <on type="nhtml:HTML5"/>
+    </agent>
+  </type>
+</types>

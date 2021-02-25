@@ -1,0 +1,15 @@
+<!-- Module Include File -->
+<!-- Types -->
+<types>
+  <!-- Type Example:<type name="MyClass" class="com.acme.BMyClass"/> -->
+  <!--com.kvg.nhtml-->
+  <type class="com.kvg.nhtml.BCustomList" name="CustomList"/>
+  <type class="com.kvg.nhtml.BCustomNavItem" name="CustomNavItem"/>
+  <type class="com.kvg.nhtml.BEquipmentList" name="EquipmentList"/>
+  <type class="com.kvg.nhtml.BEquipmentNavItem" name="EquipmentNavItem"/>
+  <type class="com.kvg.nhtml.BFloorplanList" name="FloorplanList"/>
+  <type class="com.kvg.nhtml.BFloorplanNavItem" name="FloorplanNavItem"/>
+  <type class="com.kvg.nhtml.BHTML5" name="HTML5"/>
+
+
+</types>
