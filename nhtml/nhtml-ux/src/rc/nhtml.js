@@ -50,9 +50,7 @@ define(['baja!',
                         });
                 }
             }
-            var src = "/nhtml
-
-            ";
+            var src = "/nhtml";
             var iframe = document.getElementById('nhtml_iframe');
             var iframeWindow = iframe.contentWindow || iframe.contentDocument.defaultView;
             iframe.onload = function (event) {

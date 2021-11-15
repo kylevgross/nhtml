@@ -13,17 +13,17 @@ niagaraModule {
 
 
 dependencies {
-  compile "Tridium:nre:4.9"
-  compile "Tridium:baja:4.9"
-  compile "Tridium:alarm-rt:4.9"
-  compile "Tridium:hierarchy-rt:4.9"
-  compile "Tridium:history-rt:4.9"
-  compile "Tridium:schedule-rt:4.9"
-  compile "Tridium:bql-rt:4.9"
-  compile "Tridium:gx-rt:4.9"
-  compile "Tridium:neql-rt:4.9"
-  compile "Tridium:control-rt:4.9"
-  compile 'Tridium:web-rt:4.9'
+  compile "Tridium:nre:4.10"
+  compile "Tridium:baja:4.10"
+  compile "Tridium:alarm-rt:4.10"
+  compile "Tridium:hierarchy-rt:4.10"
+  compile "Tridium:history-rt:4.10"
+  compile "Tridium:schedule-rt:4.10"
+  compile "Tridium:bql-rt:4.10"
+  compile "Tridium:gx-rt:4.10"
+  compile "Tridium:neql-rt:4.10"
+  compile "Tridium:control-rt:4.10"
+  compile 'Tridium:web-rt:4.10'
   compile project(":nhtml-rt")
 }
 

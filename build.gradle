@@ -25,6 +25,14 @@ ext.niagara_home = getGradleProperty('niagara_home')
 ext.niagara_dev_home = getGradleProperty('niagara_dev_home')
 ext.niagara_user_home = getGradleProperty('niagara_user_home')
 
+subprojects { Project p ->
+  p.pluginManager.withPlugin('com.tridium.niagara-module') {
+    p.niagaraModule {
+      certAlias = "my-cert"
+    }
+  }
+}
+
 gradle.beforeProject { p ->
   configure(p) {
     def vendorSettings = file("${rootDir}/vendor.gradle")
@@ -38,10 +46,3 @@ gradle.beforeProject { p ->
   }
 }
 
-subprojects { Project p ->
-  p.pluginManager.withPlugin('com.tridium.niagara-module') {
-    p.niagaraModule {
-      certAlias = "my-cert"
-    }
-  }
-}

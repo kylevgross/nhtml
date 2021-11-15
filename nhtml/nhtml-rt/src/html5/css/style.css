@@ -75,7 +75,6 @@ overflow-x:auto;
   background: linear-gradient(to bottom, #de851a 0%, #F7941D 100%);
 }
 #cssmenu > ul {
-  background: url('file:^graphics/images/bg.png');
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);
 }
 #cssmenu.align-right > ul > li {
@@ -317,7 +316,6 @@ overflow-x:auto;
     padding: 18px 25px 18px 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: url('file:^graphics/images/bg.png');
     cursor: pointer;
   }
   #cssmenu ul ul,
