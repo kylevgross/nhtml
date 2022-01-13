@@ -2187,10 +2187,15 @@ public class BHTML5 extends BComponent {
         setStyleCSS(BOrd.make(htmlFolder + "/css/style.css"));
         setCustomCssFile(BOrd.make(htmlFolder + "/css/custom.css"));
 
-
+        //get date
         Date date = new Date();
         System.out.println("HTML Generation started at: " + date);
 
+        //when upgrading from old version remove this slot if it exists
+        if (this.getSlot("bajascriptJs") != null) {
+               this.remove("bajascriptJs");
+               System.out.println("bajascriptJs removed");
+         }
 
         //Build Equip List
         BOrd EquipFileOrd = getEquipHTML();
@@ -2202,13 +2207,9 @@ public class BHTML5 extends BComponent {
             if (this.getSlot("EquipmentList") == null) {
                 this.add("EquipmentList", new BEquipmentList());
             }
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
                 OrdQuery[] queries = EquipFileOrd.parse();
                 FilePath filePath = (FilePath) queries[queries.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
                 equipFile = BFileSystem.INSTANCE.makeFile(filePath);
                 File localFile = BFileSystem.INSTANCE.pathToLocalFile(filePath);
                 FileWriter fw = new FileWriter(localFile, false);
@@ -2216,21 +2217,14 @@ public class BHTML5 extends BComponent {
                 fw.close();
                 System.out.println("Success writing to " + EquipFileOrd.toString());
 
-
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
                 System.out.println("Error writing to " + EquipFileOrd.toString());
             }
-
-
-            // Query for sensor components
             String parentName = getName();
-
             BOrd query = BOrd.make("station:|slot:/|bql:select equipName, equipPath from nhtml:EquipmentNavItem where parent.parent.name = '" + parentName + "'");
             String equipNavName = "";
             String equipPath = "";
-
-
             //attempt to locate the file
             try {
                 equipFile = (BIFile) EquipFileOrd.get(this);
@@ -2252,8 +2246,6 @@ public class BHTML5 extends BComponent {
                     equipPath = (cursor.cell(columns.get(1)).toString());
 
                     try {
-                        //if we are executing this code from a component in the station,
-                        //we can resolve our query using the this keyword
                         FilePath filePath = equipFile.getFilePath();
                         File localFile = BFileSystem.INSTANCE.pathToLocalFile(filePath);
                         FileWriter fw = new FileWriter(localFile, true);
@@ -2281,13 +2273,13 @@ public class BHTML5 extends BComponent {
                 this.remove("EquipmentList");
             }
 
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries = EquipFileOrd.parse();
                 FilePath filePath = (FilePath) queries[queries.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 equipFile = BFileSystem.INSTANCE.makeFile(filePath);
                 File localFile = BFileSystem.INSTANCE.pathToLocalFile(filePath);
                 FileWriter fw = new FileWriter(localFile, false);
@@ -2296,8 +2288,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + EquipFileOrd.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
 
                 System.out.println("Error writing to " + EquipFileOrd.toString());
 
@@ -2314,13 +2306,13 @@ public class BHTML5 extends BComponent {
             if (this.getSlot("CustomList") == null) {
                 this.add("CustomList", new BCustomList());
             }
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries2 = fileOrd2.parse();
                 FilePath filePath2 = (FilePath) queries2[queries2.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file2 = BFileSystem.INSTANCE.makeFile(filePath2);
                 File localFile2 = BFileSystem.INSTANCE.pathToLocalFile(filePath2);
                 FileWriter fw = new FileWriter(localFile2, false);
@@ -2329,8 +2321,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd2.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
 
                 System.out.println("Error writing to " + fileOrd2.toString());
 
@@ -2365,8 +2357,8 @@ public class BHTML5 extends BComponent {
                     customPath = (cursor2.cell(columns2.get(1)).toString());
 
                     try {
-                        //if we are executing this code from a component in the station,
-                        //we can resolve our query using the this keyword
+
+
                         FilePath filePath2 = file2.getFilePath();
                         File localFile2 = BFileSystem.INSTANCE.pathToLocalFile(filePath2);
                         FileWriter fw = new FileWriter(localFile2, true);
@@ -2393,13 +2385,13 @@ public class BHTML5 extends BComponent {
             if (this.getSlot("CustomList") != null) {
                 this.remove("CustomList");
             }
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries2 = fileOrd2.parse();
                 FilePath filePath2 = (FilePath) queries2[queries2.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file2 = BFileSystem.INSTANCE.makeFile(filePath2);
                 File localFile2 = BFileSystem.INSTANCE.pathToLocalFile(filePath2);
                 FileWriter fw = new FileWriter(localFile2, false);
@@ -2408,8 +2400,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd2.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
 
                 System.out.println("Error writing to " + fileOrd2.toString());
 
@@ -2426,13 +2418,13 @@ public class BHTML5 extends BComponent {
                 this.add("FloorplanList", new BFloorplanList());
             }
 
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries3 = fileOrd3.parse();
                 FilePath filePath3 = (FilePath) queries3[queries3.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file3 = BFileSystem.INSTANCE.makeFile(filePath3);
                 File localFile3 = BFileSystem.INSTANCE.pathToLocalFile(filePath3);
                 FileWriter fw = new FileWriter(localFile3, false);
@@ -2442,8 +2434,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd3.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
 
                 System.out.println("Error writing to " + fileOrd3.toString());
 
@@ -2477,8 +2469,8 @@ public class BHTML5 extends BComponent {
                     floorplanPath = (cursor3.cell(columns3.get(1)).toString());
 
                     try {
-                        //if we are executing this code from a component in the station,
-                        //we can resolve our query using the this keyword
+
+
                         FilePath filePath3 = file3.getFilePath();
                         File localFile3 = BFileSystem.INSTANCE.pathToLocalFile(filePath3);
                         FileWriter fw = new FileWriter(localFile3, true);
@@ -2507,13 +2499,13 @@ public class BHTML5 extends BComponent {
             }
 
 
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries3 = fileOrd3.parse();
                 FilePath filePath3 = (FilePath) queries3[queries3.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file3 = BFileSystem.INSTANCE.makeFile(filePath3);
                 File localFile3 = BFileSystem.INSTANCE.pathToLocalFile(filePath3);
                 FileWriter fw = new FileWriter(localFile3, false);
@@ -2522,8 +2514,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd3.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
                 System.out.println("Error writing to " + fileOrd3.toString());
             }
 
@@ -2538,13 +2530,13 @@ public class BHTML5 extends BComponent {
         double topPadding = getLogoTopPadding();
 
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
+        try {
+
             OrdQuery[] queries5 = fileOrd5.parse();
             FilePath filePath5 = (FilePath) queries5[queries5.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
+
+
+
             file5 = BFileSystem.INSTANCE.makeFile(filePath5);
             File localFile5 = BFileSystem.INSTANCE.pathToLocalFile(filePath5);
             FileWriter fw = new FileWriter(localFile5, false);
@@ -2553,8 +2545,8 @@ public class BHTML5 extends BComponent {
             System.out.println("Success writing to " + fileOrd5.toString());
 
 
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
+        } catch (Exception e)
+        {
 
             System.out.println("Error writing to " + fileOrd5.toString());
 
@@ -2565,13 +2557,13 @@ public class BHTML5 extends BComponent {
         String navColor = getNavColor().toString();
 
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
+        try {
+
             OrdQuery[] queries6 = fileOrd6.parse();
             FilePath filePath6 = (FilePath) queries6[queries6.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
+
+
+
             file6 = BFileSystem.INSTANCE.makeFile(filePath6);
             File localFile6 = BFileSystem.INSTANCE.pathToLocalFile(filePath6);
             FileWriter fw = new FileWriter(localFile6, false);
@@ -2580,8 +2572,8 @@ public class BHTML5 extends BComponent {
             System.out.println("Success writing to " + fileOrd6.toString());
 
 
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
+        } catch (Exception e)
+        {
 
             System.out.println("Error writing to " + fileOrd6.toString());
 
@@ -2591,13 +2583,13 @@ public class BHTML5 extends BComponent {
         BIFile fileCustomCss = null;
         String customCss = getCustomCss();
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
+        try {
+
             OrdQuery[] queriesCustomCss = fileOrdCustomCss.parse();
             FilePath filePathCustomCss = (FilePath) queriesCustomCss[queriesCustomCss.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
+
+
+
             fileCustomCss = BFileSystem.INSTANCE.makeFile(filePathCustomCss);
             File localFilefileCustomCss = BFileSystem.INSTANCE.pathToLocalFile(filePathCustomCss);
             FileWriter fw = new FileWriter(localFilefileCustomCss, false);
@@ -2606,8 +2598,8 @@ public class BHTML5 extends BComponent {
             System.out.println("Success writing to " + fileOrdCustomCss.toString());
 
 
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
+        } catch (Exception e)
+        {
 
             System.out.println("Error writing to " + fileOrdCustomCss.toString());
 
@@ -2622,13 +2614,13 @@ public class BHTML5 extends BComponent {
 
         if (getHasExternalLink() == true) {
 
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries9 = fileOrd9.parse();
                 FilePath filePath9 = (FilePath) queries9[queries9.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file9 = BFileSystem.INSTANCE.makeFile(filePath9);
                 File localFile9 = BFileSystem.INSTANCE.pathToLocalFile(filePath9);
                 FileWriter fw = new FileWriter(localFile9, false);
@@ -2637,18 +2629,18 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd9.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
                 System.out.println("Error writing to " + fileOrd9.toString());
             }
         } else {
-            try { // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+            try {
+
                 OrdQuery[] queries9 = fileOrd9.parse();
                 FilePath filePath9 = (FilePath) queries9[queries9.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 file9 = BFileSystem.INSTANCE.makeFile(filePath9);
                 File localFile9 = BFileSystem.INSTANCE.pathToLocalFile(filePath9);
                 FileWriter fw = new FileWriter(localFile9, false);
@@ -2657,8 +2649,8 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing to " + fileOrd9.toString());
 
 
-            } catch (Exception e) // Indicates problem creating file
-            { // Call configFail() to set the service into fault
+            } catch (Exception e)
+            {
                 System.out.println("Error writing to " + fileOrd9.toString());
             }
         }
@@ -2667,12 +2659,12 @@ public class BHTML5 extends BComponent {
         BIFile file13 = null;
 
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
+        try {
+
             OrdQuery[] queries13 = fileOrd13.parse();
             FilePath filePath13 = (FilePath) queries13[queries13.length - 1];
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
+
+
             file13 = BFileSystem.INSTANCE.makeFile(filePath13);
             File localFile13 = BFileSystem.INSTANCE.pathToLocalFile(filePath13);
             FileWriter fw = new FileWriter(localFile13, false);
@@ -2681,8 +2673,8 @@ public class BHTML5 extends BComponent {
             System.out.println("Success writing to " + fileOrd13.toString());
 
 
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
+        } catch (Exception e)
+        {
             System.out.println("Error writing to " + fileOrd13.toString());
         }
 
@@ -2692,8 +2684,8 @@ public class BHTML5 extends BComponent {
         String alarmConsoleName = getAlarmConsoleName();
         String alarmCountPath = getAlarmCount().toString();
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myAlarmscriptFile = (BIFile) alarmscriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -2715,7 +2707,7 @@ public class BHTML5 extends BComponent {
                     alarmscriptFw.close();
                     String str;
                     while ((str = alarmscriptBin.readLine()) != null) {
-                        //do something with our string ...
+
 
 
                         String serviceName = getName();
@@ -2724,8 +2716,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Replacing paths");
 
 
-                        try { // Parse the file ORD to retrieve the FilePath. We can safely
-                            // assume the FilePath is the last sub query of the full ORD.
+                        try {
+
 
                             FileWriter alarmscriptFw2 = new FileWriter(alarmscriptLocalFile, true);
                             alarmscriptFw2.write(str2 + "\n");
@@ -2733,8 +2725,8 @@ public class BHTML5 extends BComponent {
                             System.out.println("Success writing line to" + alarmscriptFileOrd.toString());
 
 
-                        } catch (Exception e) // Indicates problem creating file
-                        { // Call configFail() to set the service into fault
+                        } catch (Exception e)
+                        {
                             System.out.println("Error writing to " + alarmscriptFileOrd.toString());
                         }
 
@@ -2787,8 +2779,8 @@ public class BHTML5 extends BComponent {
         String notificationConsoleName = getNotificationConsoleName();
         String notificationCountPath = getNotificationCount().toString();
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myNotificationscriptFile = (BIFile) notificationscriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -2811,7 +2803,7 @@ public class BHTML5 extends BComponent {
                     notificationscriptFw.close();
                     String str;
                     while ((str = notificationscriptBin.readLine()) != null) {
-                        //do something with our string ...
+
 
 
                         String serviceName = getName();
@@ -2820,8 +2812,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Replacing paths");
 
 
-                        try { // Parse the file ORD to retrieve the FilePath. We can safely
-                            // assume the FilePath is the last sub query of the full ORD.
+                        try {
+
 
                             FileWriter notificationscriptFw2 = new FileWriter(notificationscriptLocalFile, true);
                             notificationscriptFw2.write(str2 + "\n");
@@ -2829,8 +2821,8 @@ public class BHTML5 extends BComponent {
                             System.out.println("Success writing line to" + notificationscriptFileOrd.toString());
 
 
-                        } catch (Exception e) // Indicates problem creating file
-                        { // Call configFail() to set the service into fault
+                        } catch (Exception e)
+                        {
                             System.out.println("Error writing to " + notificationscriptFileOrd.toString());
                         }
 
@@ -2880,8 +2872,8 @@ public class BHTML5 extends BComponent {
         //use a try catch block in case the file doesn't exist
         String oatPath = getOat().toString();
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myOatscriptFile = (BIFile) oatscriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -2905,7 +2897,7 @@ public class BHTML5 extends BComponent {
                     oatscriptFw.close();
                     String str;
                     while ((str = oatscriptBin.readLine()) != null) {
-                        //do something with our string ...
+
 
 
                         String serviceName = getName();
@@ -2914,8 +2906,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Replacing paths");
 
 
-                        try { // Parse the file ORD to retrieve the FilePath. We can safely
-                            // assume the FilePath is the last sub query of the full ORD.
+                        try {
+
 
                             FileWriter oatscriptFw2 = new FileWriter(oatscriptLocalFile, true);
                             oatscriptFw2.write(str2 + "\n");
@@ -2923,8 +2915,8 @@ public class BHTML5 extends BComponent {
                             System.out.println("Success writing line to" + oatscriptFileOrd.toString());
 
 
-                        } catch (Exception e) // Indicates problem creating file
-                        { // Call configFail() to set the service into fault
+                        } catch (Exception e)
+                        {
                             System.out.println("Error writing to " + oatscriptFileOrd.toString());
                         }
 
@@ -2976,8 +2968,8 @@ public class BHTML5 extends BComponent {
         //use a try catch block in case the file doesn't exist
         String oahPath = getOah().toString();
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myOahscriptFile = (BIFile) oahscriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -3000,7 +2992,7 @@ public class BHTML5 extends BComponent {
                     oahscriptFw.close();
                     String str;
                     while ((str = oahscriptBin.readLine()) != null) {
-                        //do something with our string ...
+
 
 
                         String serviceName = getName();
@@ -3009,8 +3001,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Replacing paths");
 
 
-                        try { // Parse the file ORD to retrieve the FilePath. We can safely
-                            // assume the FilePath is the last sub query of the full ORD.
+                        try {
+
 
                             FileWriter oahscriptFw2 = new FileWriter(oahscriptLocalFile, true);
                             oahscriptFw2.write(str2 + "\n");
@@ -3018,8 +3010,8 @@ public class BHTML5 extends BComponent {
                             System.out.println("Success writing line to" + oahscriptFileOrd.toString());
 
 
-                        } catch (Exception e) // Indicates problem creating file
-                        { // Call configFail() to set the service into fault
+                        } catch (Exception e)
+                        {
                             System.out.println("Error writing to " + oahscriptFileOrd.toString());
                         }
 
@@ -3132,8 +3124,8 @@ public class BHTML5 extends BComponent {
         BOrd scriptFileQuery = BOrd.make("module://nhtml/html5/js/script.js");
         //use a try catch block in case the file doesn't exist
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myScriptFile = (BIFile) scriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -3146,13 +3138,13 @@ public class BHTML5 extends BComponent {
                 BufferedReader scriptBin = new BufferedReader(scriptIn);
                 BOrd scriptFileOrd = getScriptJS();
                 BIFile scriptFile = null;
-                // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+
+
                 OrdQuery[] queriesScript = scriptFileOrd.parse();
                 FilePath scriptFilePath = (FilePath) queriesScript[queriesScript.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 scriptFile = BFileSystem.INSTANCE.makeFile(scriptFilePath);
                 File scriptLocalFile = BFileSystem.INSTANCE.pathToLocalFile(scriptFilePath);
                 FileWriter scriptFw = new FileWriter(scriptLocalFile, false);
@@ -3161,7 +3153,7 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing line to" + scriptFileOrd.toString());
                 String str;
                 while ((str = scriptBin.readLine()) != null) {
-                    //do something with our string ...
+
 
 
                     System.out.println("Reading script.js");
@@ -3173,8 +3165,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Success writing line to" + scriptFileOrd.toString());
 
 
-                    } catch (Exception e) // Indicates problem creating file
-                    { // Call configFail() to set the service into fault
+                    } catch (Exception e)
+                    {
                         System.out.println("Error writing to " + scriptFileOrd.toString());
                     }
 
@@ -3202,8 +3194,8 @@ public class BHTML5 extends BComponent {
         BOrd usernameFileQuery = BOrd.make("module://nhtml/html5/js/username.js");
         //use a try catch block in case the file doesn't exist
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myUsernameFile = (BIFile) usernameFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -3216,13 +3208,13 @@ public class BHTML5 extends BComponent {
                 BufferedReader usernameBin = new BufferedReader(usernameIn);
                 BOrd usernameFileOrd = getUsernameJs();
                 BIFile usernameFile = null;
-                // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+
+
                 OrdQuery[] queriesUsername = usernameFileOrd.parse();
                 FilePath usernameFilePath = (FilePath) queriesUsername[queriesUsername.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 usernameFile = BFileSystem.INSTANCE.makeFile(usernameFilePath);
                 File usernameLocalFile = BFileSystem.INSTANCE.pathToLocalFile(usernameFilePath);
                 FileWriter usernameFw = new FileWriter(usernameLocalFile, false);
@@ -3231,7 +3223,7 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing line to" + usernameFileOrd.toString());
                 String str;
                 while ((str = usernameBin.readLine()) != null) {
-                    //do something with our string ...
+
 
 
                     System.out.println("Reading username.js");
@@ -3243,8 +3235,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Success writing line to" + usernameFileOrd.toString());
 
 
-                    } catch (Exception e) // Indicates problem creating file
-                    { // Call configFail() to set the service into fault
+                    } catch (Exception e)
+                    {
                         System.out.println("Error writing to " + usernameFileOrd.toString());
                     }
 
@@ -3272,8 +3264,8 @@ public class BHTML5 extends BComponent {
         BOrd cssFileQuery = BOrd.make("module://nhtml/html5/css/style.css");
         //use a try catch block in case the file doesn't exist
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myCssFile = (BIFile) cssFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -3286,12 +3278,12 @@ public class BHTML5 extends BComponent {
                 BufferedReader cssBin = new BufferedReader(cssIn);
                 BOrd cssFileOrd = getStyleCSS();
                 BIFile cssFile = null;
-                // assume the FilePath is the last sub query of the full ORD.
+
                 OrdQuery[] queriesCss = cssFileOrd.parse();
                 FilePath cssFilePath = (FilePath) queriesCss[queriesCss.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 cssFile = BFileSystem.INSTANCE.makeFile(cssFilePath);
                 File cssLocalFile = BFileSystem.INSTANCE.pathToLocalFile(cssFilePath);
                 FileWriter cssFw = new FileWriter(cssLocalFile, false);
@@ -3303,7 +3295,7 @@ public class BHTML5 extends BComponent {
 
                 String str;
                 while ((str = cssBin.readLine()) != null) {
-                    //do something with our string ...
+
 
 
                     System.out.println("Reading CSS");
@@ -3315,8 +3307,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Success writing line to" + cssFileOrd.toString());
 
 
-                    } catch (Exception e) // Indicates problem creating file
-                    { // Call configFail() to set the service into fault
+                    } catch (Exception e)
+                    {
                         System.out.println("Error writing to " + cssFileOrd.toString());
                     }
 
@@ -3344,8 +3336,8 @@ public class BHTML5 extends BComponent {
         BOrd htmlFileQuery = BOrd.make("module://nhtml/html5/html/index.html");
         //use a try catch block in case the file doesn't exist
         try {
-            //if we are executing this code from a component in the station,
-            //we can resolve our query using the this keyword
+
+
             BIFile myHtmlFile = (BIFile) htmlFileQuery.get(this);
 
             //create an input stream reader from the file input stream
@@ -3358,13 +3350,13 @@ public class BHTML5 extends BComponent {
                 BufferedReader htmlBin = new BufferedReader(htmlIn);
                 BOrd htmlFileOrd = getIndexHTML();
                 BIFile htmlFile = null;
-                // Parse the file ORD to retrieve the FilePath. We can safely
-                // assume the FilePath is the last sub query of the full ORD.
+
+
                 OrdQuery[] queriesHtml = htmlFileOrd.parse();
                 FilePath htmlFilePath = (FilePath) queriesHtml[queriesHtml.length - 1];
-                // Once we have the FilePath, we use it to create the file.
-                // Niagara provides a BFileSystem space which gives us access
-                // to the local file system where we create the file:
+
+
+
                 htmlFile = BFileSystem.INSTANCE.makeFile(htmlFilePath);
                 File localHtmlFile = BFileSystem.INSTANCE.pathToLocalFile(htmlFilePath);
                 FileWriter fw = new FileWriter(localHtmlFile, false);
@@ -3373,7 +3365,7 @@ public class BHTML5 extends BComponent {
                 System.out.println("Success writing line to " + htmlFileOrd.toString());
                 String str;
                 while ((str = htmlBin.readLine()) != null) {
-                    //do something with our string ...
+
 
 
                     System.out.println("Reading HTML");
@@ -3387,8 +3379,8 @@ public class BHTML5 extends BComponent {
                         System.out.println("Success writing line to " + htmlFileOrd.toString());
 
 
-                    } catch (Exception e) // Indicates problem creating file
-                    { // Call configFail() to set the service into fault
+                    } catch (Exception e)
+                    {
                         System.out.println("Error writing to " + htmlFileOrd.toString());
                     }
 

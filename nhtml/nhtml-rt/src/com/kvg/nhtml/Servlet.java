@@ -38,7 +38,7 @@ public class Servlet extends HttpServlet {
 
 
         if (homePage.equals(defaultPath) || homePage.equals("null"))  {
-            resp.getWriter().write(String.format("User nav file not properly set - refer to nhtml documentation"));
+            resp.getWriter().write(String.format("Error! User nav file not properly set - refer to nhtml documentation"));
             System.out.println("Homepage not properly set");
 
         }

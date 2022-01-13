@@ -55,16 +55,16 @@ import javax.tools.StandardLocation
 
 class Bajadoc extends DefaultTask {
 
-  def Iterable<String> options = []
-  def Iterable<File> sources = []
-  def Iterable<File> classpath = []
-  def Class<?> doclet
+  Iterable<String> options = []
+    Iterable<File> sources = []
+    Iterable<File> classpath = []
+    Class<?> doclet
 
   @TaskAction
   void doc() {     
-    def tool = ToolProvider.getSystemDocumentationTool();
-    def fm = tool.getStandardFileManager(null, null, null);
-    fm.setLocation(StandardLocation.CLASS_PATH, classpath)
+    def tool = ToolProvider.getSystemDocumentationTool()
+      def fm = tool.getStandardFileManager(null, null, null)
+      fm.setLocation(StandardLocation.CLASS_PATH, classpath)
 
     tool.getTask(null, fm, null, doclet, options, fm.getJavaFileObjectsFromFiles(sources)).call()
   }
