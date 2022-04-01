@@ -10,6 +10,9 @@
 <p n="CustomNavItem" m="kvg=nhtml" t="kvg:CustomNavItem" />
 
 <p n="FloorplanNavItem" m="kvg=nhtml" t="kvg:FloorplanNavItem" />
+
+
+<p n="ExternalLinkItem" m="kvg=nhtml" t="kvg:ExternalLinkItem" />
 </p>
 
 

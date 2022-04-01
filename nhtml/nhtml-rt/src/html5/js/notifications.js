@@ -25,7 +25,6 @@
             notifSub.attach('changed', function (prop) {
             if (prop.getName() === 'out') { update(this); }
              });
-             //this is the link to the alarm count on the alarm service wiresheet, either name it AllAlarms or copy your name here
             baja.Ord.make("notificationCountPath").get({
                subscriber: notifSub
             }).then(update); 

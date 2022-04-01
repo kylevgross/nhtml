@@ -10,6 +10,6 @@
   <type class="com.kvg.nhtml.BFloorplanList" name="FloorplanList"/>
   <type class="com.kvg.nhtml.BFloorplanNavItem" name="FloorplanNavItem"/>
   <type class="com.kvg.nhtml.BHTML5" name="HTML5"/>
-
-
+  <type class="com.kvg.nhtml.BExternalLinkItem" name="ExternalLinkItem"/>
+  <type class="com.kvg.nhtml.BExternalList" name="ExternalList"/>
 </types>

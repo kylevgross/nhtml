@@ -63,6 +63,6 @@ public class BCustomList extends BComponent {
 
   @Override
   public BIcon getIcon() {
-    return BIcon.make("module://nhtml/icons/list.png");
+    return BIcon.std("web.png");
   }
 }

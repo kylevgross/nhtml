@@ -101,6 +101,8 @@
         </li>
         <li id="ExternalLink" class><a href='#'><span></span></a>
         </li>
+        <li id="ExternalMenu" class><a href='#'><span></span></a>
+        </li>
         waveSync
         historiesMenu
         schedulesMenu
@@ -144,6 +146,10 @@ $.get("floorplans.html", function(data){
      
      $.get("external.html", function(data){
     $("#ExternalLink").replaceWith(data);
+});
+
+        $.get("externallist.html", function(data){
+    $("#ExternalMenu").replaceWith(data);
 });
    });
 </script>
