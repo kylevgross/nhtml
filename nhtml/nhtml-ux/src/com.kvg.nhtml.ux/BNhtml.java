@@ -17,6 +17,17 @@ import javax.baja.web.js.JsInfo;
         )}
 )
 public class BNhtml extends BSingleton implements BIJavaScript, BIFormFactorMax {
+/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+/*@ $com.kvg.nhtml.ux.BNhtml(3098065164)1.0$ @*/
+/* Generated Thu Mar 31 13:34:50 BOT 2022 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+
+////////////////////////////////////////////////////////////////
+// Type
+////////////////////////////////////////////////////////////////
+  
+
+
+/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
     public static final BNhtml INSTANCE = new BNhtml();
     public static final Type TYPE = Sys.loadType(BNhtml.class);
