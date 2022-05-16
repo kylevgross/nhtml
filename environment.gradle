@@ -6,7 +6,7 @@
 // Change niagara_home and niagara_user_home as needed to point to the
 // correct path to your desired Niagara install and its associated
 // user home
-gradle.ext.niagara_dev_home = "C:/dev/nhtml/0.40"
-gradle.ext.niagara_home = "C:/Niagara/Niagara-4.10.0.154"
-gradle.ext.niagara_user_home = "C:/Users/kylegross/Niagara4.10/vykon"
+gradle.ext.niagara_dev_home = "C:/dev/nhtml/0.50"
+gradle.ext.niagara_home = "C:/Niagar/Niagara-4.11.0.142"
+gradle.ext.niagara_user_home = "C:/Users/kylegross/Niagara4.11/vykon"
 
